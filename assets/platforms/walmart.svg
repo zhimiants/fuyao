@@ -1,0 +1,7 @@
+<svg width="280" height="96" viewBox="0 0 280 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="278" height="94" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="116" y="57" text-anchor="middle" fill="#FFFFFF" font-size="28" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="700">Walmart</text>
+  <g transform="translate(214 48)">
+    <path d="M0-16L4-4L16 0L4 4L0 16L-4 4L-16 0L-4-4L0-16Z" fill="#FFC548"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="318" height="118" rx="24" fill="url(#bg)" stroke="rgba(255,255,255,0.18)"/>
+  <path d="M110 81L82 33L67 42L90 81H110ZM137 81L119 50L104 59L117 81H137ZM65 67L74 81H54L50 74L65 67Z" fill="white"/>
+  <text x="228" y="74" text-anchor="middle" fill="#FFFFFF" font-size="34" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" letter-spacing="2">adidas</text>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="16" x2="282" y2="102" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#080808"/>
+      <stop offset="1" stop-color="#1E1E1E"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,11 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="318" height="118" rx="24" fill="url(#bg)" stroke="rgba(255,255,255,0.18)"/>
+  <path d="M106 76L186 42C165 51 146 58 129 63C108 70 96 72 89 68C84 65 82 60 84 53C85 50 87 47 90 43C85 47 81 52 78 57C74 64 73 70 76 74C79 79 84 81 91 81C96 81 101 79 106 76Z" fill="white"/>
+  <text x="230" y="72" text-anchor="middle" fill="#FFFFFF" font-size="36" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" letter-spacing="3">NIKE</text>
+  <defs>
+    <linearGradient id="bg" x1="36" y1="18" x2="280" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111111"/>
+      <stop offset="1" stop-color="#272727"/>
+    </linearGradient>
+  </defs>
+</svg>

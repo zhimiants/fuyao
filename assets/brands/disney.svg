@@ -1,0 +1,10 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="318" height="118" rx="24" fill="url(#bg)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="160" y="70" text-anchor="middle" fill="#FFFFFF" font-size="52" font-family="'Snell Roundhand','Brush Script MT',cursive" font-weight="700">Disney</text>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="18" x2="280" y2="102" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1A44"/>
+      <stop offset="1" stop-color="#16306C"/>
+    </linearGradient>
+  </defs>
+</svg>
