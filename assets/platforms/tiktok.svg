@@ -1,0 +1,7 @@
+<svg width="280" height="96" viewBox="0 0 280 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="278" height="94" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+  <g transform="translate(70 48)">
+    <path d="M8 -18V6.5C8 11.4 4.05 15.3 -0.7 15.3C-5.45 15.3 -9.4 11.4 -9.4 6.5C-9.4 1.6 -5.45 -2.3 -0.7 -2.3C0.85 -2.3 2.3 -1.86 3.56 -1.06V-8.2C2.18 -8.58 0.75 -8.78 -0.7 -8.78C-8.98 -8.78 -15.7 -2.02 -15.7 6.5C-15.7 15.02 -8.98 21.78 -0.7 21.78C7.58 21.78 14.3 15.02 14.3 6.5V-6.08C16.96 -4.13 20.17 -2.97 23.64 -2.86V-9.32C18.57 -9.84 14.1 -13.19 12.2 -17.96L8 -18Z" fill="#FFFFFF"/>
+  </g>
+  <text x="170" y="58" text-anchor="middle" fill="#FFFFFF" font-size="30" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="700">TikTok</text>
+</svg>

@@ -1,11 +1,6 @@
 <svg width="280" height="96" viewBox="0 0 280 96" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="1" y="1" width="278" height="94" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
-  <path d="M75 35L93 24L111 35V56L93 68L75 56V35Z" fill="url(#g)"/>
-  <text x="180" y="57" text-anchor="middle" fill="#FFFFFF" font-size="28" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="700">Lazada</text>
-  <defs>
-    <linearGradient id="g" x1="75" y1="24" x2="111" y2="68" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FF7A00"/>
-      <stop offset="1" stop-color="#A04DFF"/>
-    </linearGradient>
-  </defs>
+  <path d="M76 32L95 20L114 32V55L95 70L76 55V32Z" fill="#FFFFFF" fill-opacity="0.18"/>
+  <path d="M95 24L108 32V47C108 50.9 105.12 54.33 100.9 58.07L95 63L89.1 58.07C84.88 54.33 82 50.9 82 47V32L95 24Z" fill="#FFFFFF"/>
+  <text x="184" y="58" text-anchor="middle" fill="#FFFFFF" font-size="28" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="700">Lazada</text>
 </svg>

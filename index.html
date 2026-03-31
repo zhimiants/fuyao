@@ -98,6 +98,32 @@
       isolation: isolate;
     }
 
+    .color-bends-bg {
+      position: fixed;
+      inset: -14%;
+      z-index: -5;
+      pointer-events: none;
+      opacity: 0.9;
+      filter: saturate(132%) blur(0.3px);
+      transform: scale(1.04);
+    }
+
+    .color-bends-bg canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      mix-blend-mode: screen;
+      opacity: 0.98;
+    }
+
+    .color-bends-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 36%, rgba(5, 10, 24, 0.01), rgba(4, 9, 21, 0.22) 54%, rgba(4, 9, 21, 0.62));
+    }
+
     .page::before {
       content: "";
       position: absolute;
@@ -154,8 +180,15 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
       min-width: 0;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark {
+      width: clamp(106px, 10.8vw, 180px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(5, 12, 30, 0.22));
     }
 
     .brand-badge {
@@ -201,8 +234,38 @@
       font-size: 0.92rem;
     }
 
+    .nav .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition:
+        color 220ms ease,
+        text-shadow 220ms ease,
+        box-shadow 220ms ease,
+        background 220ms ease,
+        border-color 220ms ease;
+    }
+
     .nav a:hover {
       color: var(--text);
+    }
+
+    .nav .nav-link.is-active {
+      color: var(--gold);
+      background:
+        linear-gradient(180deg, rgba(255, 215, 152, 0.12), rgba(242, 197, 126, 0.04)),
+        rgba(18, 29, 58, 0.88);
+      border-color: rgba(242, 197, 126, 0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 234, 198, 0.1),
+        0 10px 24px rgba(5, 12, 30, 0.34),
+        0 0 0 1px rgba(255, 214, 147, 0.05);
+      text-shadow: 0 0 18px rgba(242, 197, 126, 0.16);
     }
 
     .button {
@@ -241,30 +304,54 @@
       display: grid;
       grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
       gap: 28px;
-      align-items: start;
-    }
-
-    .eyebrow {
-      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--teal);
-      letter-spacing: 0.08em;
-      font-size: 0.9rem;
-      margin-bottom: 22px;
     }
 
-    .eyebrow::before {
+    .hero-copy-col {
+      position: relative;
+      isolation: isolate;
+      min-height: 520px;
+      display: grid;
+      align-content: center;
+      margin-top: -60px;
+    }
+
+    .hero-copy-col > *:not(.particle-title-shell) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .particle-title-shell {
+      position: absolute;
+      left: -24px;
+      top: 10px;
+      width: min(100%, 660px);
+      height: clamp(240px, 34vw, 360px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.76;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.6) 72%, transparent);
+    }
+
+    .particle-title-shell::before {
       content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 0 6px rgba(116, 226, 211, 0.12);
+      position: absolute;
+      inset: -6% -4%;
+      border-radius: 40px;
+      background:
+        radial-gradient(circle at 24% 44%, rgba(130, 174, 251, 0.14), transparent 34%),
+        radial-gradient(circle at 74% 58%, rgba(116, 226, 211, 0.12), transparent 36%);
+      filter: blur(18px);
+      opacity: 0.9;
+    }
+
+    .particle-title {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 0 22px rgba(130, 174, 251, 0.18));
+      mix-blend-mode: screen;
     }
 
     h1,
@@ -336,7 +423,9 @@
       min-height: 486px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(14, 26, 66, 0.96), rgba(9, 18, 42, 0.92)),
+        radial-gradient(circle at 30% 20%, rgba(114, 168, 255, 0.08), transparent 38%),
+        radial-gradient(circle at 68% 74%, rgba(112, 239, 219, 0.1), transparent 34%),
+        linear-gradient(180deg, rgba(14, 26, 66, 0.94), rgba(9, 18, 42, 0.9)),
         rgba(255,255,255,0.02);
     }
 
@@ -367,6 +456,11 @@
       opacity: 0.55;
     }
 
+    .visual-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .visual-top {
       position: relative;
       z-index: 1;
@@ -387,10 +481,10 @@
       aspect-ratio: 1;
       display: grid;
       place-items: center;
+      isolation: isolate;
     }
 
-    .orbit-stage::before,
-    .orbit-stage::after {
+    .orbit-stage::before {
       content: "";
       position: absolute;
       inset: 8%;
@@ -398,15 +492,46 @@
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .orbit-stage::after {
+    .orbit-rotator {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      animation: orbit-spin 28s linear infinite;
+    }
+
+    .orbit-ring {
+      position: absolute;
       inset: 22% -6%;
+      border-radius: 50%;
+      border: 1px solid rgba(242,197,126,0.52);
       border-color: rgba(242,197,126,0.52);
       transform: rotate(-22deg);
       background: rgba(242,197,126,0.05);
     }
 
+    @keyframes orbit-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes orbit-counter-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
     .planet-core {
       position: relative;
+      z-index: 2;
       width: 74%;
       aspect-ratio: 1;
       border-radius: 50%;
@@ -421,6 +546,7 @@
         inset 0 -22px 44px rgba(0,0,0,0.32),
         0 20px 40px rgba(0,0,0,0.2);
       overflow: hidden;
+      transition: transform 260ms ease, box-shadow 260ms ease;
     }
 
     .planet-core::before {
@@ -447,12 +573,73 @@
 
     .orbit-chip {
       position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 3;
+      transform: translate(-50%, -50%) translate(var(--offset-x), var(--offset-y));
+    }
+
+    .orbit-chip-spin {
+      animation: orbit-counter-spin 28s linear infinite;
+    }
+
+    .orbit-chip-content {
       min-width: 146px;
       padding: 12px 14px;
       border-radius: 18px;
-      background: rgba(8, 16, 40, 0.78);
+      background:
+        linear-gradient(180deg, rgba(10, 19, 46, 0.88), rgba(8, 16, 40, 0.78));
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 14px 36px rgba(0,0,0,0.2);
+      transform-origin: center;
+      transition:
+        transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 260ms ease,
+        background 260ms ease,
+        border-color 260ms ease;
+    }
+
+    .orbit-chip:hover {
+      z-index: 4;
+    }
+
+    .orbit-stage.is-paused .orbit-rotator,
+    .orbit-stage.is-paused .orbit-chip-spin {
+      animation-play-state: paused;
+    }
+
+    .orbit-stage.is-paused .orbit-rotator {
+      z-index: 7;
+    }
+
+    .orbit-stage.is-paused .planet-core {
+      box-shadow:
+        inset 0 -22px 44px rgba(0,0,0,0.32),
+        0 14px 30px rgba(0,0,0,0.16);
+    }
+
+    .orbit-chip:hover .orbit-chip-content {
+      background:
+        linear-gradient(180deg, rgba(20, 32, 68, 0.96), rgba(9, 18, 42, 0.92));
+      border-color: rgba(242,197,126,0.32);
+      box-shadow:
+        0 24px 54px rgba(0,0,0,0.34),
+        0 0 0 1px rgba(242,197,126,0.08);
+      transform: translateY(-10px) scale(1.1);
+    }
+
+    .orbit-chip.is-focused {
+      z-index: 8;
+    }
+
+    .orbit-chip.is-focused .orbit-chip-content {
+      background:
+        linear-gradient(180deg, rgba(23, 37, 78, 0.98), rgba(10, 20, 48, 0.94));
+      border-color: rgba(242,197,126,0.42);
+      box-shadow:
+        0 28px 60px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(242,197,126,0.14);
+      transform: translateY(-12px) scale(1.14);
     }
 
     .orbit-chip strong {
@@ -470,21 +657,35 @@
     }
 
     .orbit-chip.top-left {
-      left: -12px;
-      top: 38px;
+      --offset-x: -124px;
+      --offset-y: -90px;
     }
 
     .orbit-chip.top-right {
-      right: -8px;
-      top: 54px;
+      --offset-x: 126px;
+      --offset-y: -62px;
     }
 
     .orbit-chip.bottom {
-      left: 50%;
-      bottom: 8px;
-      transform: translateX(-50%);
+      --offset-x: 0px;
+      --offset-y: 136px;
       min-width: 220px;
       text-align: center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .color-bends-bg {
+        display: none;
+      }
+
+      .particle-title-shell {
+        display: none;
+      }
+
+      .orbit-rotator,
+      .orbit-chip-spin {
+        animation: none;
+      }
     }
 
     .channel-card {
@@ -606,6 +807,311 @@
       line-height: 1.82;
     }
 
+    .coverage-section-top {
+      display: block;
+      margin-bottom: 34px;
+    }
+
+    .coverage-section-heading {
+      min-width: 0;
+    }
+
+    .coverage-section-top h2 {
+      margin: 0;
+      max-width: none;
+      font-size: clamp(1.89rem, 3.09vw, 3.27rem);
+      line-height: 1.02;
+      letter-spacing: -0.075em;
+      white-space: nowrap;
+    }
+
+    .coverage-section-top p {
+      max-width: none;
+      margin: 18px 0 0;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      white-space: nowrap;
+    }
+
+    #contact .section-top h2 {
+      max-width: none;
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .about-copy {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      align-content: stretch;
+      gap: 34px;
+      width: 100%;
+      min-height: 100%;
+      --about-copy-width: min(100%, 32rem);
+    }
+
+    .about-copy-lead,
+    .about-note {
+      width: var(--about-copy-width);
+      max-width: 100%;
+    }
+
+    .about-copy-lead {
+      display: grid;
+      align-content: start;
+      gap: 18px;
+    }
+
+    .about-copy h2 {
+      margin: 0;
+      max-width: none;
+      line-height: 1.18;
+      letter-spacing: -0.055em;
+    }
+
+    .about-visual-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: minmax(280px, 1fr) auto;
+      gap: 18px;
+      min-height: 430px;
+      padding: 18px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(10, 21, 49, 0.92), rgba(7, 16, 34, 0.88));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .about-visual-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .about-visual-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-image-shell {
+      min-height: 320px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .about-image-shell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-note {
+      margin: -20px 0 0;
+      padding: 16px 20px;
+      border-radius: 22px;
+      background: rgba(8, 16, 40, 0.76);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 2.02;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    .supported-countries-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    #supported-countries .section-top h2 {
+      max-width: none;
+      font-size: clamp(1.9rem, 3.2vw, 3.3rem);
+      white-space: nowrap;
+    }
+
+    #brands .section-top h2 {
+      max-width: none;
+      font-size: clamp(1.9rem, 3.1vw, 3.2rem);
+      white-space: nowrap;
+    }
+
+    .supported-map-card {
+      position: relative;
+      padding: 22px;
+      min-height: 620px;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      background:
+        radial-gradient(circle at 20% 18%, rgba(116, 226, 211, 0.08), transparent 28%),
+        radial-gradient(circle at 82% 72%, rgba(130, 174, 251, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(10, 21, 49, 0.94), rgba(7, 14, 32, 0.96));
+    }
+
+    .supported-map-card::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: 0.42;
+    }
+
+    .supported-map-head,
+    .supported-map-frame,
+    .supported-copy-stack {
+      position: relative;
+      z-index: 1;
+    }
+
+    .supported-map-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+      color: var(--muted-soft);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .supported-map-frame {
+      min-height: 534px;
+      height: calc(100% - 36px);
+      border-radius: 30px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(116, 226, 211, 0.08), transparent 38%),
+        rgba(6, 16, 40, 0.32);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+
+    .supported-map-frame::after {
+      content: "";
+      position: absolute;
+      inset: auto 8% 7%;
+      height: 28%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(130,174,251,0.16), transparent 68%);
+      filter: blur(24px);
+      pointer-events: none;
+    }
+
+    .supported-map-image {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 920px);
+      max-height: 100%;
+      object-fit: contain;
+      opacity: 0.96;
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.06));
+    }
+
+    .supported-copy-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .supported-copy-card {
+      position: relative;
+      padding: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(12, 23, 52, 0.96), rgba(8, 15, 34, 0.92));
+    }
+
+    .supported-copy-card::after {
+      content: "";
+      position: absolute;
+      right: -46px;
+      bottom: -54px;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(116, 226, 211, 0.14), transparent 66%);
+    }
+
+    .supported-copy-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .supported-copy-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.16rem;
+      letter-spacing: -0.03em;
+    }
+
+    .supported-copy-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.72;
+    }
+
+    .supported-copy-card li {
+      font-size: 0.98rem;
+      line-height: 1.72;
+    }
+
+    .supported-region-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .supported-region-card {
+      padding: 14px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .supported-region-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .supported-region-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
     .brand-section-grid {
       display: grid;
       grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
@@ -613,6 +1119,9 @@
     }
 
     .brand-copy-card {
+      display: grid;
+      align-content: start;
+      gap: 18px;
       padding: 28px;
       border-radius: var(--radius-xl);
       background:
@@ -635,16 +1144,44 @@
     }
 
     .brand-copy-card h3 {
-      margin: 0 0 16px;
-      font-size: 2rem;
-      line-height: 1.08;
+      margin: 0;
+      font-size: clamp(2.3rem, 3.2vw, 3rem);
+      line-height: 1.12;
       letter-spacing: -0.04em;
     }
 
     .brand-copy-card p {
-      margin: 0 0 20px;
+      margin: 0;
       color: var(--muted);
-      line-height: 1.82;
+      font-size: 1.22rem;
+      line-height: 1.96;
+    }
+
+    .brand-copy-card .brand-copy-list {
+      margin-top: 10px;
+      padding-bottom: 108px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .brand-copy-card .brand-copy-list li {
+      max-width: 100%;
+    }
+
+    .brand-copy-card .brand-copy-list li + li {
+      margin-top: 0;
+    }
+
+    .brand-copy-card .brand-copy-list .brand-copy-item-wide {
+      max-width: 700px;
+    }
+
+    .brand-copy-card .brand-copy-list .brand-copy-item-mid {
+      max-width: 760px;
+    }
+
+    .brand-copy-card .brand-copy-list .brand-copy-item-short {
+      max-width: 640px;
     }
 
     .brand-copy-card ul,
@@ -663,14 +1200,15 @@
       position: relative;
       padding-left: 18px;
       color: var(--muted);
-      line-height: 1.72;
+      font-size: 1.14rem;
+      line-height: 1.94;
     }
 
     .brand-copy-card li + li,
     .feature-card li + li,
     .coverage-card li + li,
     .contact-list li + li {
-      margin-top: 12px;
+      margin-top: 14px;
     }
 
     .brand-copy-card li::before,
@@ -706,6 +1244,100 @@
     .logo-card img {
       max-height: 72px;
       width: auto;
+      object-fit: contain;
+    }
+
+    .logo-card.logo-card-photo {
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .logo-card.logo-card-photo img {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 18px;
+      object-fit: cover;
+      object-position: 64% center;
+    }
+
+    .logo-card.logo-card-wide {
+      padding: 10px 16px;
+    }
+
+    .logo-card.logo-card-wide img {
+      width: auto;
+      max-width: 100%;
+      max-height: 96px;
+      border-radius: 18px;
+      object-fit: contain;
+    }
+
+    .logo-card.logo-card-badge {
+      padding: 8px 16px;
+    }
+
+    .logo-card.logo-card-badge img {
+      width: 88%;
+      max-width: none;
+      height: 112px;
+      max-height: none;
+      padding: 12px 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f4f6fb 100%);
+      box-shadow:
+        0 14px 28px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 1px rgba(17, 25, 44, 0.08);
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .logo-card.logo-card-badge.logo-card-disney img {
+      width: 88%;
+      height: 112px;
+      padding: 0;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .logo-card.more-licensed {
+      background:
+        linear-gradient(180deg, rgba(25, 33, 69, 0.96), rgba(13, 18, 40, 0.94));
+    }
+
+    .logo-card.more-licensed .more-licensed-badge {
+      width: min(100%, 230px);
+      min-height: 72px;
+      padding: 14px 18px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        rgba(9, 16, 36, 0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        0 10px 24px rgba(0,0,0,0.22);
+    }
+
+    .logo-card.more-licensed strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .logo-card.more-licensed span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .features-grid {
@@ -900,6 +1532,16 @@
         linear-gradient(180deg, rgba(12, 23, 52, 0.96), rgba(8, 15, 34, 0.92));
     }
 
+    .contact-card.brand-show > div {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
     .contact-card.brand-show::before {
       content: "";
       position: absolute;
@@ -911,17 +1553,21 @@
       background: radial-gradient(circle, rgba(116,226,211,0.14), transparent 64%);
     }
 
-    .contact-card.brand-show img {
-      width: min(100%, 340px);
-      filter: drop-shadow(0 18px 48px rgba(9, 14, 42, 0.34));
+    .contact-card.brand-show .qr-image {
+      width: min(100%, 316px);
+      filter: drop-shadow(0 20px 46px rgba(9, 14, 42, 0.44));
+    }
+
+    .contact-card.brand-show strong {
+      display: block;
+      font-size: 1.36rem;
+      letter-spacing: 0.03em;
     }
 
     .contact-card.brand-show p {
-      position: relative;
-      z-index: 1;
-      text-align: center;
       max-width: 22rem;
-      margin: 18px 0 0;
+      margin: 0;
+      color: var(--muted);
     }
 
     .contact-list li strong {
@@ -938,6 +1584,7 @@
       border: 1px dashed rgba(255,255,255,0.12);
       color: var(--muted);
       line-height: 1.74;
+      white-space: nowrap;
     }
 
     .cta {
@@ -979,6 +1626,16 @@
       line-height: 1.82;
     }
 
+    .cta-copy h2 {
+      max-width: none;
+      margin: 0;
+    }
+
+    .cta-copy h2 span {
+      display: block;
+      white-space: nowrap;
+    }
+
     .footer {
       padding: 0 0 38px;
       text-align: center;
@@ -1000,6 +1657,8 @@
 
     @media (max-width: 1120px) {
       .hero-grid,
+      .about-grid,
+      .supported-countries-layout,
       .brand-section-grid,
       .coverage-layout,
       .contact-layout,
@@ -1009,6 +1668,48 @@
 
       .cta-inner {
         align-items: start;
+      }
+
+      .about-copy {
+        grid-template-rows: auto auto;
+        align-content: start;
+        gap: 24px;
+        min-height: auto;
+      }
+
+      #supported-countries .section-top h2 {
+        white-space: normal;
+      }
+
+      #brands .section-top h2 {
+        white-space: normal;
+      }
+
+      .coverage-section-top p {
+        max-width: 100%;
+        margin-bottom: 0;
+        white-space: normal;
+      }
+
+      .coverage-section-top h2 {
+        white-space: normal;
+      }
+
+      #contact .section-top h2 {
+        white-space: normal;
+      }
+
+      .contact-note {
+        white-space: normal;
+      }
+
+      .about-note {
+        max-width: 100%;
+        margin-left: 0;
+      }
+
+      .supported-region-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .stats-grid {
@@ -1031,6 +1732,7 @@
 
       .platform-grid,
       .brand-logo-grid,
+      .supported-region-grid,
       .features-grid,
       .stats-grid {
         grid-template-columns: 1fr 1fr;
@@ -1046,8 +1748,25 @@
         width: min(calc(100% - 24px), var(--max-width));
       }
 
+      .brand-mark {
+        width: min(34.8vw, 132px);
+      }
+
       .hero {
         padding-top: 34px;
+      }
+
+      .hero-copy-col {
+        min-height: auto;
+        margin-top: 0;
+      }
+
+      .particle-title-shell {
+        left: -10px;
+        top: 14px;
+        width: calc(100% + 10px);
+        height: 200px;
+        opacity: 0.62;
       }
 
       .hero-actions,
@@ -1064,6 +1783,7 @@
       .channel-card,
       .stat-card,
       .logo-card,
+      .supported-copy-card,
       .feature-card,
       .map-card,
       .coverage-card,
@@ -1074,18 +1794,63 @@
 
       .platform-grid,
       .brand-logo-grid,
+      .supported-region-grid,
       .features-grid,
       .stats-grid {
         grid-template-columns: 1fr;
       }
 
+      .supported-map-card {
+        min-height: 420px;
+        padding: 20px;
+      }
+
+      .supported-map-card::before {
+        inset: 20px;
+      }
+
+      .supported-map-head {
+        display: grid;
+        gap: 6px;
+      }
+
+      .supported-map-frame {
+        min-height: 320px;
+        height: auto;
+        padding: 18px;
+      }
+
       .orbit-stage {
         width: min(100%, 290px);
+        gap: 14px;
+      }
+
+      .orbit-rotator {
+        position: static;
+        inset: auto;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        animation: none;
+      }
+
+      .orbit-ring {
+        display: none;
       }
 
       .orbit-chip {
         position: static;
-        transform: none !important;
+        left: auto;
+        top: auto;
+        transform: none;
+      }
+
+      .orbit-chip-spin {
+        animation: none;
+        width: 100%;
+      }
+
+      .orbit-chip-content {
         margin-top: 14px;
       }
 
@@ -1116,24 +1881,19 @@
 </head>
 <body>
   <div class="page">
+    <div class="color-bends-bg" aria-hidden="true"></div>
     <header class="topbar container">
       <div class="topbar-inner">
         <a class="brand" href="#top" aria-label="扶摇星链首页">
-          <span class="brand-badge">
-            <img src="./logo.png" alt="扶摇星链 Logo">
-          </span>
-          <span class="brand-copy">
-            <strong>扶摇星链</strong>
-            <span>Fuyao Starlink Commerce</span>
-          </span>
+          <img class="brand-mark" src="./pic/logo正式版.png" alt="扶摇星链 Logo">
         </a>
         <nav class="nav" aria-label="主导航">
-          <a href="#about">公司概览</a>
-          <a href="#brands">授权矩阵</a>
-          <a href="#capabilities">核心能力</a>
-          <a href="#coverage">全球版图</a>
-          <a href="#contact">合作联系</a>
-          <a class="button primary contact-trigger" href="tel:13835727278" data-phone="13835727278">电话咨询</a>
+          <a class="nav-link" href="#about">公司概览</a>
+          <a class="nav-link" href="#brands">授权矩阵</a>
+          <a class="nav-link" href="#capabilities">核心能力</a>
+          <a class="nav-link" href="#coverage">全球版图</a>
+          <a class="nav-link" href="#contact">合作联系</a>
+          <a class="button primary" href="tel:13835727278">电话咨询</a>
         </nav>
       </div>
     </header>
@@ -1141,8 +1901,10 @@
     <main id="top">
       <section class="hero">
         <div class="container hero-grid">
-          <div data-reveal>
-            <span class="eyebrow">扶摇星链 · 创世科技</span>
+          <div class="hero-copy-col" data-reveal>
+            <div class="particle-title-shell" aria-hidden="true">
+              <canvas class="particle-title" id="particle-title"></canvas>
+            </div>
             <h1>聚全球货盘<span>创出海巅峰</span></h1>
             <p class="hero-subtitle">
               IP授权、柔性供应、全球物流、合伙孵化一站式解决方案
@@ -1154,7 +1916,7 @@
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#contact">立即洽谈合作</a>
-              <a class="button secondary contact-trigger" href="tel:13835727278" data-phone="13835727278">联系电话：13835727278</a>
+              <a class="button secondary" href="tel:13835727278">联系电话：13835727278</a>
             </div>
           </div>
 
@@ -1165,20 +1927,35 @@
                 <span>Brand / Supply / Fulfillment</span>
               </div>
               <div class="orbit-stage">
-                <div class="orbit-chip top-left">
-                  <strong>授权矩阵</strong>
-                  <span>品牌护城河与溢价能力</span>
-                </div>
-                <div class="orbit-chip top-right">
-                  <strong>柔性制造</strong>
-                  <span>POD 模式降低库存压力</span>
-                </div>
                 <div class="planet-core">
-                  <img src="./logo.png" alt="扶摇星链品牌视觉">
+                  <img src="./pic/logo.png" alt="扶摇星链品牌视觉">
                 </div>
-                <div class="orbit-chip bottom">
-                  <strong>全球履约网络</strong>
-                  <span>海外工厂、仓储体系、多平台同步增长</span>
+                <div class="orbit-rotator">
+                  <div class="orbit-ring"></div>
+                  <div class="orbit-chip top-left">
+                    <div class="orbit-chip-spin">
+                      <div class="orbit-chip-content">
+                        <strong>授权矩阵</strong>
+                        <span>品牌护城河与溢价能力</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="orbit-chip top-right">
+                    <div class="orbit-chip-spin">
+                      <div class="orbit-chip-content">
+                        <strong>柔性制造</strong>
+                        <span>POD 模式降低库存压力</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="orbit-chip bottom">
+                    <div class="orbit-chip-spin">
+                      <div class="orbit-chip-content">
+                        <strong>全球履约网络</strong>
+                        <span>海外工厂、仓储体系、多平台同步增长</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
@@ -1191,7 +1968,7 @@
                 <div class="platform-logo"><img src="./assets/platforms/temu.svg" alt="Temu"></div>
                 <div class="platform-logo"><img src="./assets/platforms/walmart.svg" alt="Walmart"></div>
                 <div class="platform-logo"><img src="./assets/platforms/shein.svg" alt="Shein"></div>
-                <div class="platform-logo"><img src="./assets/platforms/aliexpress.svg" alt="AliExpress"></div>
+                <div class="platform-logo"><img src="./assets/platforms/tiktok.svg" alt="TikTok"></div>
                 <div class="platform-logo"><img src="./assets/platforms/lazada.svg" alt="Lazada"></div>
                 <div class="platform-logo"><img src="./assets/platforms/shopee.svg" alt="Shopee"></div>
               </div>
@@ -1227,15 +2004,76 @@
 
       <section id="about">
         <div class="container">
+          <div class="about-grid" data-reveal>
+            <div class="about-copy">
+              <div class="about-copy-lead">
+                <span class="section-kicker">Company Overview</span>
+                <h2>不是单一货盘商，而是完整的跨境增长底盘</h2>
+              </div>
+              <div class="about-note">
+                扶摇星链把授权、制造、物流、系统和培训整合成一个更适合跨境电商的出海系统，
+                帮助卖家从“能起盘”走向“能复制、能放大、能长期赢”。
+              </div>
+            </div>
+            <div class="about-visual-card">
+              <div class="about-image-shell">
+                <img src="./pic/01.jpg" alt="扶摇星链办公环境">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="supported-countries">
+        <div class="container">
           <div class="section-top" data-reveal>
             <div>
-              <span class="section-kicker">Company Overview</span>
-              <h2>不是单一货盘商，而是完整的跨境增长底盘</h2>
+              <span class="section-kicker">Supported Markets</span>
+              <h2>货盘当前支持 5 大区域、13 个重点国家发货</h2>
             </div>
-            <p>
-              扶摇星链把授权、制造、物流、系统和培训整合成一个更适合跨境电商的出海系统，
-              帮助卖家从“能起盘”走向“能复制、能放大、能长期赢”。
-            </p>
+          </div>
+
+          <div class="supported-countries-layout">
+            <article class="supported-map-card" data-reveal>
+              <div class="supported-map-head">
+                <span>Current Supported Countries</span>
+                <span>Asia / Europe / Americas / Oceania</span>
+              </div>
+              <div class="supported-map-frame">
+                <img class="supported-map-image" src="./pic/货盘国家透明底.png" alt="扶摇星链当前支持国家地图">
+              </div>
+            </article>
+
+            <div class="supported-copy-stack">
+              <article class="supported-copy-card coverage-card" data-reveal>
+                <h3>当前货盘覆盖范围</h3>
+                <p>以亚洲供应端为核心，扶摇星链当前已支持欧洲、北美、南美与大洋洲重点国家发货，适合多区域同步测试、上新与履约。</p>
+                <ul>
+                  <li>覆盖中国、日本、马来西亚、泰国等亚洲核心节点</li>
+                  <li>延展至美国、加拿大、墨西哥、巴西、澳大利亚等重点跨境市场</li>
+                  <li>支持俄罗斯、意大利、西班牙、英国等欧洲国家出货场景</li>
+                </ul>
+              </article>
+
+              <div class="supported-region-grid">
+                <article class="supported-region-card" data-reveal>
+                  <strong>亚洲 Asia</strong>
+                  <span>中国、日本、马来西亚、泰国</span>
+                </article>
+                <article class="supported-region-card" data-reveal>
+                  <strong>欧洲 Europe</strong>
+                  <span>俄罗斯、意大利、西班牙、英国</span>
+                </article>
+                <article class="supported-region-card" data-reveal>
+                  <strong>北美 North America</strong>
+                  <span>美国、墨西哥、加拿大</span>
+                </article>
+                <article class="supported-region-card" data-reveal>
+                  <strong>南美及大洋洲</strong>
+                  <span>巴西、澳大利亚</span>
+                </article>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1245,37 +2083,40 @@
           <div class="section-top" data-reveal>
             <div>
               <span class="section-kicker">Licensed Brands</span>
-              <h2>授权品牌矩阵直接上墙，画面更完整也更有说服力</h2>
+              <h2>授权品牌矩阵，一眼看清实力背书</h2>
             </div>
-            <p>
-              根据你给的宣传文案，这一版把授权品牌做成了清晰的 logo 墙展示，
-              不再只是纯文字提及。桌面端和移动端都避免了重叠遮挡。
-            </p>
           </div>
 
           <div class="brand-section-grid">
             <article class="brand-copy-card" data-reveal>
               <h3>顶流 IP 与国际品牌背书</h3>
               <p>
-                扶摇星链通过顶流 IP 授权和国际品牌合作，形成更强的品牌护城河，
-                在内容传播、市场识别、商品溢价和合规稳定上同时建立优势。
+                扶摇星链整合头部 IP 授权与国际品牌合作资源，
+                在传播声量、市场识别、产品溢价与合规稳定上同步建立优势。
               </p>
-              <ul>
-                <li>授权文案覆盖 Disney、Minions、Sanrio、Marvel、Smiley 等品牌与 IP</li>
-                <li>同时支持 Nike、Adidas 等国际运动品牌授权业务场景</li>
-                <li>官方验厂资质覆盖服装、包袋、水杯等多品类生产</li>
+              <ul class="brand-copy-list">
+                <li class="brand-copy-item-wide">授权覆盖 Disney、Minions、Sanrio、Marvel、Smiley 等品牌与 IP</li>
+                <li class="brand-copy-item-mid">同时支持 Nike、Adidas 等国际运动品牌授权业务场景</li>
+                <li class="brand-copy-item-short">官方验厂资质覆盖服装、包袋、水杯等多品类生产</li>
               </ul>
             </article>
 
             <div class="brand-logo-grid">
-              <article class="logo-card" data-reveal><img src="./assets/brands/disney.svg" alt="Disney"></article>
-              <article class="logo-card" data-reveal><img src="./assets/brands/marvel.svg" alt="Marvel"></article>
-              <article class="logo-card" data-reveal><img src="./assets/brands/sanrio.svg" alt="Sanrio"></article>
-              <article class="logo-card" data-reveal><img src="./assets/brands/minions.svg" alt="Minions"></article>
-              <article class="logo-card" data-reveal><img src="./assets/brands/nike.svg" alt="Nike"></article>
-              <article class="logo-card" data-reveal><img src="./assets/brands/adidas.svg" alt="Adidas"></article>
-              <article class="logo-card" data-reveal><img src="./assets/brands/smiley.svg" alt="Smiley"></article>
-              <article class="logo-card" data-reveal><img src="./logo.png" alt="扶摇星链 Logo"></article>
+              <article class="logo-card logo-card-badge logo-card-disney" data-reveal><img src="./pic/dishini.jpg" alt="Disney"></article>
+              <article class="logo-card logo-card-wide" data-reveal><img src="./pic/Marvel_Logo.svg" alt="Marvel"></article>
+              <article class="logo-card logo-card-badge" data-reveal><img src="./pic/Sanrio-Logo.jpg" alt="Sanrio"></article>
+              <article class="logo-card logo-card-photo" data-reveal><img src="./pic/封面jpg画板-2@4x-80-1.jpg" alt="Minions"></article>
+              <article class="logo-card logo-card-badge" data-reveal><img src="./pic/耐克.jpg" alt="Nike"></article>
+              <article class="logo-card logo-card-wide" data-reveal><img src="./pic/Adidas-mountain-logo.webp" alt="Adidas"></article>
+              <article class="logo-card logo-card-badge" data-reveal><img src="./pic/weixiao.jpg" alt="Smiley"></article>
+              <article class="logo-card more-licensed" data-reveal>
+                <div class="more-licensed-badge" aria-label="更多授权品牌">
+                  <div>
+                    <strong>More IP</strong>
+                    <span>Licensed Brands</span>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </div>
@@ -1286,12 +2127,8 @@
           <div class="section-top" data-reveal>
             <div>
               <span class="section-kicker">Core Capabilities</span>
-              <h2>四大能力模块，拼出完整出海闭环</h2>
+              <h2>四大能力模块<br>拼出完整出海闭环</h2>
             </div>
-            <p>
-              这一版继续保留深色星链风格，但把内容排布重新整理成更清楚的阅读层级，
-              保证视觉氛围和信息可读性同时在线。
-            </p>
           </div>
 
           <div class="features-grid">
@@ -1341,14 +2178,14 @@
 
       <section id="coverage">
         <div class="container">
-          <div class="section-top" data-reveal>
-            <div>
+          <div class="section-top coverage-section-top" data-reveal>
+            <div class="coverage-section-heading">
               <span class="section-kicker">Global Coverage</span>
               <h2>全球本土供应链版图，支撑更快更稳的履约体系</h2>
+              <p>
+                公司设有 2 个自营海外工厂，含美区自营工厂，并通过全球仓储网络与本土化运营能力支撑多区域市场。
+              </p>
             </div>
-            <p>
-              公司设有 2 个自营海外工厂，含美区自营工厂，并通过全球仓储网络与本土化运营能力支撑多区域市场。
-            </p>
           </div>
 
           <div class="coverage-layout">
@@ -1427,10 +2264,6 @@
               <span class="section-kicker">Contact</span>
               <h2>准备出海，就从一次高效沟通开始</h2>
             </div>
-            <p>
-              现在这版已经修掉了明显的文字遮挡问题，并补上了更多品牌与平台视觉素材。
-              如果你继续给我二维码或企业实拍图，我还可以再往正式官网方向升级。
-            </p>
           </div>
 
           <div class="contact-layout">
@@ -1455,15 +2288,14 @@
                 </li>
               </ul>
               <div class="contact-note">
-                当前页里的授权品牌 logo 是根据你提供的宣传文案补上的本地展示素材。
-                原文档里没有可提取的微信二维码图片，所以联系区暂时没有接入真实二维码。
+                支持客户咨询、品牌合作、平台招商与跨境项目对接，建议优先通过微信扫码联系。
               </div>
             </article>
 
             <article class="contact-card brand-show" data-reveal>
               <div>
-                <img src="./logo.png" alt="扶摇星链 Logo">
-                <p>网页主视觉与联系区都已经接入扶摇星链 logo，并同步使用本地文件，离线打开也能正常显示。</p>
+                <img class="qr-image" src="./assets/wechat-qr-white.png" alt="扶摇星链微信二维码">
+                <strong>扫码添加微信</strong>
               </div>
             </article>
           </div>
@@ -1476,10 +2308,13 @@
             <div class="cta-inner">
               <div class="cta-copy">
                 <span class="section-kicker">Ready To Scale</span>
-                <h2>把货盘、授权、履约和增长，接入同一个跨境系统</h2>
+                <h2>
+                  <span>把货盘、授权、履约和增长</span>
+                  <span>接入同一个跨境系统</span>
+                </h2>
                 <p>扶摇星链以一站式解决方案，为跨境卖家提供更低门槛、更高效率、更强合规性的出海路径。</p>
               </div>
-              <a class="button primary contact-trigger" href="tel:13835727278" data-phone="13835727278">现在联系扶摇星链</a>
+              <a class="button primary" href="tel:13835727278">现在联系扶摇星链</a>
             </div>
           </article>
         </div>
@@ -1487,11 +2322,549 @@
     </main>
 
     <footer class="footer container">
-      © 2026 莆田市扶摇星链信息咨询有限公司 ｜ 联系电话：13835727278 ｜ 本页面仅作企业展示与商务合作联系使用
+      页面更新时间：2026-03-25
     </footer>
   </div>
 
+  <script type="module">
+    import * as THREE from "./assets/vendor/three.module.js";
+
+    const backgroundRoot = document.querySelector(".color-bends-bg");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const MAX_COLORS = 8;
+
+    if (backgroundRoot && !prefersReducedMotion.matches) {
+      const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: false,
+        powerPreference: "high-performance"
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.85));
+      renderer.setClearColor(0x000000, 0);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.domElement.style.width = "100%";
+      renderer.domElement.style.height = "100%";
+      renderer.domElement.style.display = "block";
+      backgroundRoot.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const pointerTarget = new THREE.Vector2(0, 0);
+      const pointerCurrent = new THREE.Vector2(0, 0);
+      const rotation = 36;
+      const speed = 0.24;
+      const scale = 0.92;
+      const frequency = 1.16;
+      const warpStrength = 1.42;
+      const mouseInfluence = 1.08;
+      const parallax = 0.68;
+      const noise = 0.05;
+
+      const toVec3 = (hex) => {
+        const value = hex.replace("#", "").trim();
+        const rgb = value.length === 3
+          ? [
+              parseInt(value[0] + value[0], 16),
+              parseInt(value[1] + value[1], 16),
+              parseInt(value[2] + value[2], 16)
+            ]
+          : [
+              parseInt(value.slice(0, 2), 16),
+              parseInt(value.slice(2, 4), 16),
+              parseInt(value.slice(4, 6), 16)
+            ];
+
+        return new THREE.Vector3(rgb[0] / 255, rgb[1] / 255, rgb[2] / 255);
+      };
+
+      const colorStops = [
+        "#0a1b4b",
+        "#1b49a5",
+        "#1788a4",
+        "#72cfd5",
+        "#7aa4ff",
+        "#f2c57e"
+      ];
+      const uniformColors = Array.from(
+        { length: MAX_COLORS },
+        (_, index) => colorStops[index] ? toVec3(colorStops[index]) : new THREE.Vector3(0, 0, 0)
+      );
+
+      const uniforms = {
+        uCanvas: { value: new THREE.Vector2(1, 1) },
+        uTime: { value: 0 },
+        uSpeed: { value: speed },
+        uRot: { value: new THREE.Vector2(1, 0) },
+        uColorCount: { value: colorStops.length },
+        uColors: { value: uniformColors },
+        uTransparent: { value: 1 },
+        uScale: { value: scale },
+        uFrequency: { value: frequency },
+        uWarpStrength: { value: warpStrength },
+        uPointer: { value: new THREE.Vector2(0, 0) },
+        uMouseInfluence: { value: mouseInfluence },
+        uParallax: { value: parallax },
+        uNoise: { value: noise }
+      };
+
+      const material = new THREE.ShaderMaterial({
+        transparent: true,
+        premultipliedAlpha: true,
+        depthWrite: false,
+        uniforms,
+        vertexShader: `
+          varying vec2 vUv;
+
+          void main() {
+            vUv = uv;
+            gl_Position = vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          precision highp float;
+
+          #define MAX_COLORS ${MAX_COLORS}
+
+          uniform vec2 uCanvas;
+          uniform float uTime;
+          uniform float uSpeed;
+          uniform vec2 uRot;
+          uniform int uColorCount;
+          uniform vec3 uColors[MAX_COLORS];
+          uniform int uTransparent;
+          uniform float uScale;
+          uniform float uFrequency;
+          uniform float uWarpStrength;
+          uniform vec2 uPointer;
+          uniform float uMouseInfluence;
+          uniform float uParallax;
+          uniform float uNoise;
+          varying vec2 vUv;
+
+          void main() {
+            float t = uTime * uSpeed;
+            vec2 p = vUv * 2.0 - 1.0;
+            p += uPointer * uParallax * 0.1;
+            vec2 rp = vec2(
+              p.x * uRot.x - p.y * uRot.y,
+              p.x * uRot.y + p.y * uRot.x
+            );
+            vec2 q = vec2(rp.x * (uCanvas.x / uCanvas.y), rp.y);
+            q /= max(uScale, 0.0001);
+            q /= 0.5 + 0.2 * dot(q, q);
+            q += 0.2 * cos(t) - 7.56;
+            vec2 toward = uPointer - rp;
+            q += toward * uMouseInfluence * 0.2;
+
+            vec3 col = vec3(0.0);
+            float a = 1.0;
+
+            if (uColorCount > 0) {
+              vec2 s = q;
+              vec3 sumCol = vec3(0.0);
+              float cover = 0.0;
+
+              for (int i = 0; i < MAX_COLORS; ++i) {
+                if (i >= uColorCount) break;
+                s -= 0.01;
+                vec2 r = sin(1.5 * (s.yx * uFrequency) + 2.0 * cos(s * uFrequency));
+                float m0 = length(r + sin(5.0 * r.y * uFrequency - 3.0 * t + float(i)) / 4.0);
+                float kBelow = clamp(uWarpStrength, 0.0, 1.0);
+                float kMix = pow(kBelow, 0.3);
+                float gain = 1.0 + max(uWarpStrength - 1.0, 0.0);
+                vec2 disp = (r - s) * kBelow;
+                vec2 warped = s + disp * gain;
+                float m1 = length(warped + sin(5.0 * warped.y * uFrequency - 3.0 * t + float(i)) / 4.0);
+                float m = mix(m0, m1, kMix);
+                float w = 1.0 - exp(-6.0 / exp(6.0 * m));
+                sumCol += uColors[i] * w;
+                cover = max(cover, w);
+              }
+
+              col = clamp(sumCol, 0.0, 1.0);
+              a = uTransparent > 0 ? cover : 1.0;
+            } else {
+              vec2 s = q;
+
+              for (int k = 0; k < 3; ++k) {
+                s -= 0.01;
+                vec2 r = sin(1.5 * (s.yx * uFrequency) + 2.0 * cos(s * uFrequency));
+                float m0 = length(r + sin(5.0 * r.y * uFrequency - 3.0 * t + float(k)) / 4.0);
+                float kBelow = clamp(uWarpStrength, 0.0, 1.0);
+                float kMix = pow(kBelow, 0.3);
+                float gain = 1.0 + max(uWarpStrength - 1.0, 0.0);
+                vec2 disp = (r - s) * kBelow;
+                vec2 warped = s + disp * gain;
+                float m1 = length(warped + sin(5.0 * warped.y * uFrequency - 3.0 * t + float(k)) / 4.0);
+                float m = mix(m0, m1, kMix);
+                col[k] = 1.0 - exp(-6.0 / exp(6.0 * m));
+              }
+
+              a = uTransparent > 0 ? max(max(col.r, col.g), col.b) : 1.0;
+            }
+
+            if (uNoise > 0.0001) {
+              float grain = fract(
+                sin(dot(gl_FragCoord.xy + vec2(uTime), vec2(12.9898, 78.233))) * 43758.5453123
+              );
+              col += (grain - 0.5) * uNoise;
+              col = clamp(col, 0.0, 1.0);
+            }
+
+            vec3 rgb = (uTransparent > 0) ? col * a : col;
+            gl_FragColor = vec4(rgb, a);
+          }
+        `
+      });
+
+      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+      scene.add(mesh);
+
+      const clock = new THREE.Clock();
+
+      const resize = () => {
+        const rect = backgroundRoot.getBoundingClientRect();
+        const width = rect.width || window.innerWidth;
+        const height = rect.height || window.innerHeight;
+        renderer.setSize(width, height, false);
+        uniforms.uCanvas.value.set(width, height);
+      };
+
+      resize();
+      window.addEventListener("resize", resize);
+
+      const updatePointer = (clientX, clientY) => {
+        const rect = backgroundRoot.getBoundingClientRect();
+        const x = ((clientX - rect.left) / (rect.width || 1)) * 2 - 1;
+        const y = -((((clientY - rect.top) / (rect.height || 1)) * 2) - 1);
+        pointerTarget.set(x, y);
+      };
+
+      const handlePointerMove = (event) => {
+        updatePointer(event.clientX, event.clientY);
+      };
+
+      const handlePointerLeave = () => {
+        pointerTarget.set(0, 0);
+      };
+
+      window.addEventListener("pointermove", handlePointerMove, { passive: true });
+      window.addEventListener("pointerleave", handlePointerLeave);
+
+      let rafId = 0;
+      let previousTime = performance.now();
+
+      const updateRotation = () => {
+        const radians = (rotation * Math.PI) / 180;
+        uniforms.uRot.value.set(Math.cos(radians), Math.sin(radians));
+      };
+
+      updateRotation();
+
+      const render = () => {
+        const now = performance.now();
+        const delta = Math.min((now - previousTime) / 1000, 0.12);
+        previousTime = now;
+
+        const amount = Math.min(1, delta * 8);
+        pointerCurrent.lerp(pointerTarget, amount);
+        uniforms.uPointer.value.copy(pointerCurrent);
+        uniforms.uTime.value = clock.getElapsedTime();
+        renderer.render(scene, camera);
+        rafId = window.requestAnimationFrame(render);
+      };
+
+      const stop = () => {
+        if (rafId) {
+          window.cancelAnimationFrame(rafId);
+          rafId = 0;
+        }
+      };
+
+      const start = () => {
+        if (!rafId) {
+          clock.start();
+          previousTime = performance.now();
+          render();
+        }
+      };
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          stop();
+        } else {
+          start();
+        }
+      });
+
+      start();
+
+      window.addEventListener("pagehide", stop);
+
+      const dispose = () => {
+        stop();
+        window.removeEventListener("resize", resize);
+        window.removeEventListener("pointermove", handlePointerMove);
+        window.removeEventListener("pointerleave", handlePointerLeave);
+        window.removeEventListener("pagehide", stop);
+        mesh.geometry.dispose();
+        material.dispose();
+        renderer.dispose();
+        renderer.forceContextLoss();
+      };
+
+      window.addEventListener("beforeunload", dispose, { once: true });
+    }
+  </script>
+
   <script>
+    (() => {
+      const canvas = document.getElementById("particle-title");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (!canvas || prefersReducedMotion.matches) return;
+
+      const host = canvas.closest(".hero-copy-col");
+      const shell = canvas.parentElement;
+      const context = canvas.getContext("2d", { alpha: true });
+      const offscreen = document.createElement("canvas");
+      const offscreenContext = offscreen.getContext("2d", { willReadFrequently: true });
+
+      if (!host || !shell || !context || !offscreenContext) return;
+
+      let particles = [];
+      let width = 0;
+      let height = 0;
+      let rafId = 0;
+      let active = true;
+      let initialized = false;
+      const pointer = { x: -9999, y: -9999, radius: 118 };
+      const palette = ["#f2c57e", "#74e2d3", "#82aefb", "#b7cbff"];
+
+      const buildParticles = () => {
+        const rect = shell.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+        width = Math.max(1, Math.floor(rect.width));
+        height = Math.max(1, Math.floor(rect.height));
+
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        offscreen.width = canvas.width;
+        offscreen.height = canvas.height;
+
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+        offscreenContext.setTransform(1, 0, 0, 1, 0, 0);
+        offscreenContext.clearRect(0, 0, offscreen.width, offscreen.height);
+
+        const fontSize = Math.floor(Math.min(offscreen.height * 0.48, offscreen.width * 0.22));
+        offscreenContext.fillStyle = "#ffffff";
+        offscreenContext.textAlign = "left";
+        offscreenContext.textBaseline = "middle";
+        offscreenContext.font = `700 ${fontSize}px "Baskerville", "Songti SC", serif`;
+        offscreenContext.fillText("扶摇星链", offscreen.width * 0.04, offscreen.height * 0.52);
+
+        const imageData = offscreenContext.getImageData(0, 0, offscreen.width, offscreen.height).data;
+        const gap = Math.max(5, Math.floor(6 * dpr));
+        particles = [];
+
+        for (let y = 0; y < offscreen.height; y += gap) {
+          for (let x = 0; x < offscreen.width; x += gap) {
+            const alpha = imageData[(y * offscreen.width + x) * 4 + 3];
+            if (alpha > 140) {
+              const baseX = x / dpr;
+              const baseY = y / dpr;
+              const hueBand = baseY / Math.max(height, 1);
+              const colorIndex = Math.min(palette.length - 1, Math.floor(hueBand * palette.length));
+
+              particles.push({
+                x: baseX + (Math.random() - 0.5) * 90,
+                y: baseY + (Math.random() - 0.5) * 90,
+                originX: baseX,
+                originY: baseY,
+                vx: 0,
+                vy: 0,
+                size: Math.random() * 1.6 + 0.7,
+                color: palette[(colorIndex + Math.floor(Math.random() * 2)) % palette.length]
+              });
+            }
+          }
+        }
+
+        initialized = true;
+      };
+
+      const render = () => {
+        if (!active) return;
+
+        context.clearRect(0, 0, width, height);
+
+        particles.forEach((particle) => {
+          const dx = particle.x - pointer.x;
+          const dy = particle.y - pointer.y;
+          const distance = Math.hypot(dx, dy);
+
+          if (distance < pointer.radius) {
+            const angle = Math.atan2(dy, dx);
+            const force = (pointer.radius - distance) / pointer.radius;
+            particle.vx += Math.cos(angle) * force * 1.8;
+            particle.vy += Math.sin(angle) * force * 1.8;
+          }
+
+          particle.vx += (particle.originX - particle.x) * 0.028;
+          particle.vy += (particle.originY - particle.y) * 0.028;
+          particle.vx *= 0.88;
+          particle.vy *= 0.88;
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          context.beginPath();
+          context.fillStyle = particle.color;
+          context.globalAlpha = 0.78;
+          context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          context.fill();
+        });
+
+        context.globalAlpha = 1;
+        rafId = requestAnimationFrame(render);
+      };
+
+      const start = () => {
+        if (!initialized) buildParticles();
+        active = true;
+        if (!rafId) render();
+      };
+
+      const stop = () => {
+        active = false;
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = 0;
+        }
+      };
+
+      const updatePointer = (clientX, clientY) => {
+        const rect = shell.getBoundingClientRect();
+        pointer.x = clientX - rect.left;
+        pointer.y = clientY - rect.top;
+      };
+
+      const handlePointerMove = (event) => {
+        updatePointer(event.clientX, event.clientY);
+      };
+
+      const handlePointerLeave = () => {
+        pointer.x = -9999;
+        pointer.y = -9999;
+      };
+
+      const handleResize = () => {
+        buildParticles();
+      };
+
+      host.addEventListener("pointermove", handlePointerMove, { passive: true });
+      host.addEventListener("pointerleave", handlePointerLeave);
+      window.addEventListener("resize", handleResize);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stop();
+        else start();
+      });
+
+      start();
+    })();
+
+    document.querySelectorAll(".orbit-stage").forEach((stage) => {
+      const chips = stage.querySelectorAll(".orbit-chip");
+
+      const clearFocus = () => {
+        stage.classList.remove("is-paused");
+        chips.forEach((chip) => {
+          chip.classList.remove("is-focused");
+        });
+      };
+
+      chips.forEach((chip) => {
+        chip.addEventListener("mouseenter", () => {
+          stage.classList.add("is-paused");
+          chips.forEach((item) => {
+            item.classList.toggle("is-focused", item === chip);
+          });
+        });
+
+        chip.addEventListener("mouseleave", clearFocus);
+      });
+
+      stage.addEventListener("mouseleave", clearFocus);
+    });
+
+    const navLinks = Array.from(document.querySelectorAll(".nav .nav-link"));
+    const sectionMap = new Map(
+      navLinks
+        .map((link) => {
+          const targetId = link.getAttribute("href")?.slice(1);
+          const section = targetId ? document.getElementById(targetId) : null;
+          return section ? [section.id, link] : null;
+        })
+        .filter(Boolean)
+    );
+
+    const setActiveNav = (sectionId) => {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${sectionId}`;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        const targetId = link.getAttribute("href")?.slice(1);
+        if (targetId) {
+          setActiveNav(targetId);
+        }
+      });
+    });
+
+    const initialHash = window.location.hash.slice(1);
+    if (initialHash && sectionMap.has(initialHash)) {
+      setActiveNav(initialHash);
+    } else if (navLinks[0]) {
+      const firstSectionId = navLinks[0].getAttribute("href")?.slice(1);
+      if (firstSectionId) {
+        setActiveNav(firstSectionId);
+      }
+    }
+
+    window.addEventListener("hashchange", () => {
+      const activeId = window.location.hash.slice(1);
+      if (sectionMap.has(activeId)) {
+        setActiveNav(activeId);
+      }
+    });
+
+    const navObserver = new IntersectionObserver((entries) => {
+      const visibleEntries = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio || a.boundingClientRect.top - b.boundingClientRect.top);
+
+      if (visibleEntries[0]) {
+        setActiveNav(visibleEntries[0].target.id);
+      }
+    }, {
+      rootMargin: "-18% 0px -55% 0px",
+      threshold: [0.2, 0.35, 0.5, 0.65]
+    });
+
+    sectionMap.forEach((_, sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        navObserver.observe(section);
+      }
+    });
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -1535,40 +2908,6 @@
 
     counters.forEach((counter) => {
       countObserver.observe(counter);
-    });
-
-    const isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-
-    const showCopyToast = (message) => {
-      let toast = document.querySelector(".copy-toast");
-      if (!toast) {
-        toast = document.createElement("div");
-        toast.className = "copy-toast";
-        toast.style.cssText = "position:fixed;left:50%;bottom:32px;transform:translateX(-50%);padding:10px 16px;border-radius:999px;background:rgba(10,18,36,.92);color:#f5d28b;font-size:14px;box-shadow:0 12px 32px rgba(0,0,0,.28);z-index:9999;opacity:0;transition:opacity .25s ease;pointer-events:none;";
-        document.body.appendChild(toast);
-      }
-      toast.textContent = message;
-      toast.style.opacity = "1";
-      clearTimeout(window.__copyToastTimer);
-      window.__copyToastTimer = setTimeout(() => {
-        toast.style.opacity = "0";
-      }, 1800);
-    };
-
-    document.querySelectorAll(".contact-trigger").forEach((link) => {
-      link.addEventListener("click", async (event) => {
-        const phone = link.dataset.phone || "13835727278";
-        if (isMobileDevice) {
-          return;
-        }
-        event.preventDefault();
-        try {
-          await navigator.clipboard.writeText(phone);
-          showCopyToast(`号码 ${phone} 已复制，请在手机或微信中拨打`);
-        } catch (error) {
-          showCopyToast(`联系电话：${phone}`);
-        }
-      });
     });
   </script>
 </body>
